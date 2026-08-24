@@ -1,0 +1,33 @@
+<div id="dwSupportWidget" class="dw-support-widget" aria-live="polite">
+  <button id="dwSupportToggle" class="dw-support-button" type="button" aria-expanded="false" aria-controls="dwSupportPanel" title="Chat with support">
+    <span class="dw-support-icon">💬</span><span>Support</span>
+  </button>
+  <section id="dwSupportPanel" class="dw-support-panel" hidden>
+    <div class="dw-support-head"><div><strong>DAILYWINS Support</strong><small>Usually replies within a few minutes</small></div><button id="dwSupportClose" type="button" aria-label="Close chat">×</button></div>
+    <div id="dwSupportMessages" class="dw-support-messages"><div class="dw-chat-empty">Hello! How can we help you today?</div></div>
+    <form id="dwSupportForm" class="dw-support-form"><input id="dwSupportInput" maxlength="2000" autocomplete="off" placeholder="Type your message…" required><button type="submit">Send</button></form>
+    <div class="dw-support-note">Please don't send passwords, recovery codes, or payment card PINs.</div>
+  </section>
+</div>
+<script>
+(function(){
+  const toggle=document.getElementById('dwSupportToggle'), panel=document.getElementById('dwSupportPanel'), close=document.getElementById('dwSupportClose');
+  const list=document.getElementById('dwSupportMessages'), form=document.getElementById('dwSupportForm'), input=document.getElementById('dwSupportInput');
+  if(!toggle||!panel||!list||!form) return;
+  let hasMessages=false;
+  function openChat(){panel.hidden=false;toggle.setAttribute('aria-expanded','true');input.focus();loadMessages();}
+  function closeChat(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+  async function loadMessages(){
+    try{const r=await fetch('{{ url_for("support_chat_messages") }}',{cache:'no-store'});const d=await r.json();
+      if(!d.messages.length && !hasMessages) return; hasMessages=true; list.innerHTML='';
+      d.messages.forEach(m=>{const row=document.createElement('div');row.className='dw-chat-row '+(m.sender==='user'?'user':'support');const bubble=document.createElement('div');bubble.className='dw-chat-bubble';bubble.textContent=m.message;row.appendChild(bubble);list.appendChild(row);});
+      list.scrollTop=list.scrollHeight;
+    }catch(e){}
+  }
+  form.addEventListener('submit',async e=>{e.preventDefault();const message=input.value.trim();if(!message)return;input.disabled=true;
+    try{const r=await fetch('{{ url_for("support_chat_send") }}',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message})});if(r.ok){input.value='';hasMessages=true;await loadMessages();}}finally{input.disabled=false;input.focus();}
+  });
+  toggle.addEventListener('click',()=>panel.hidden?openChat():closeChat()); close.addEventListener('click',closeChat);
+  setInterval(()=>{if(!panel.hidden)loadMessages();},4000);
+})();
+</script>

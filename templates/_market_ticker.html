@@ -1,0 +1,20 @@
+<aside id="dwMarketTicker" class="dw-market-wrap" aria-label="Cryptocurrency market prices">
+  <button id="dwMarketToggle" class="dw-market-tab" type="button" aria-expanded="false"><span>₿</span><b>Markets</b></button>
+  <div id="dwMarketPanel" class="dw-market-panel" hidden>
+    <div class="dw-market-head"><div><strong>Crypto Market</strong><small>Live public market data</small></div><button id="dwMarketClose" type="button" aria-label="Close market panel">×</button></div>
+    <div id="dwMarketList" class="dw-market-list"><div class="dw-market-loading">Loading market prices…</div></div>
+    <div class="dw-market-foot">Prices are indicative and may be delayed.</div>
+  </div>
+</aside>
+<script>
+(function(){
+  const toggle=document.getElementById('dwMarketToggle'),panel=document.getElementById('dwMarketPanel'),close=document.getElementById('dwMarketClose'),list=document.getElementById('dwMarketList');
+  if(!toggle||!panel||!list)return;
+  function open(){panel.hidden=false;toggle.setAttribute('aria-expanded','true');fetchPrices();}
+  function shut(){panel.hidden=true;toggle.setAttribute('aria-expanded','false');}
+  function money(n){return new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:n<1?4:2}).format(n)}
+  async function fetchPrices(){try{const r=await fetch('{{ url_for("crypto_prices_api") }}',{cache:'no-store'});const d=await r.json();if(!d.prices.length){list.innerHTML='<div class="dw-market-loading">Market data is temporarily unavailable.</div>';return;}list.innerHTML=d.prices.map(x=>{const c=Number(x.change||0);return '<div class="dw-market-row"><div><b>'+x.symbol+'</b><small>USD</small></div><div class="dw-market-price">'+money(Number(x.price))+'<span class="'+(c>=0?'up':'down')+'">'+(c>=0?'+':'')+c.toFixed(2)+'%</span></div></div>';}).join('');}catch(e){list.innerHTML='<div class="dw-market-loading">Market data is temporarily unavailable.</div>';}}
+  toggle.addEventListener('click',()=>panel.hidden?open():shut());close.addEventListener('click',shut);
+  setInterval(fetchPrices,30000); setTimeout(open,1600); setTimeout(shut,9000);
+})();
+</script>
