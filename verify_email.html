@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email | DAILYWINS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="h-full bg-slate-950 text-slate-100 font-sans antialiased flex flex-col justify-between">
+
+    <header class="w-full py-6 px-6 border-b border-slate-900 bg-slate-950">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <span class="text-xl font-bold tracking-tight text-white">DAILYWINS</span>
+            <a href="{{ url_for('logout') }}" class="text-sm font-medium text-slate-400 hover:text-white">Sign Out</a>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center px-4 py-12">
+        <div class="max-w-md w-full space-y-8 bg-slate-900 border border-slate-800 p-8 rounded-2xl shadow-2xl text-center">
+            
+            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-400 rounded-2xl mx-auto flex items-center justify-center">
+                <i data-lucide="mail-check" class="w-8 h-8"></i>
+            </div>
+
+            <div>
+                <h2 class="text-2xl font-extrabold text-white">Check Your Email</h2>
+                <p class="text-xs text-slate-400 mt-2">We sent a 5-digit verification code to your email. (Check your Flask terminal output if testing locally).</p>
+            </div>
+ 
+                  <div class="p-3 text-xs rounded-xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">{{ message }}</div>
+                
+
+            <form method="POST" class="space-y-6">
+                <div class="flex justify-center space-x-3">
+                    <input type="text" name="code_1" maxlength="1" required class="w-12 h-14 bg-slate-950 border border-slate-800 text-center text-xl font-bold rounded-xl text-white focus:border-emerald-500" />
+                    <input type="text" name="code_2" maxlength="1" required class="w-12 h-14 bg-slate-950 border border-slate-800 text-center text-xl font-bold rounded-xl text-white focus:border-emerald-500" />
+                    <input type="text" name="code_3" maxlength="1" required class="w-12 h-14 bg-slate-950 border border-slate-800 text-center text-xl font-bold rounded-xl text-white focus:border-emerald-500" />
+                    <input type="text" name="code_4" maxlength="1" required class="w-12 h-14 bg-slate-950 border border-slate-800 text-center text-xl font-bold rounded-xl text-white focus:border-emerald-500" />
+                    <input type="text" name="code_5" maxlength="1" required class="w-12 h-14 bg-slate-950 border border-slate-800 text-center text-xl font-bold rounded-xl text-white focus:border-emerald-500" />
+                </div>
+
+                <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3.5 rounded-xl text-sm transition">
+                    Verify Email
+                </button>
+            </form>
+
+            <div class="text-xs text-slate-500">
+                Didn't receive the code? <a href="{{ url_for('resend_code') }}" class="text-emerald-400 font-medium hover:underline ml-1">Resend Code</a>
+            </div>
+        </div>
+    </main>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>
