@@ -1,9 +1,0 @@
-<div id="dwWithdrawalToast" class="dw-withdraw-toast" aria-live="polite" hidden></div>
-<script>
-(function(){
- const box=document.getElementById('dwWithdrawalToast'); if(!box)return; let items=[]; let index=0;
- async function load(){try{const r=await fetch('{{ url_for("recent_withdrawals_api") }}',{cache:'no-store'});const d=await r.json();items=d.withdrawals||[];}catch(e){items=[];}}
- function show(){if(!items.length)return;const x=items[index%items.length];index++;box.innerHTML='<span class="dw-toast-icon">✓</span><div><strong>Withdrawal approved</strong><span>'+x.name+(x.country?' · '+x.country:'')+' withdrew '+x.symbol+Number(x.amount).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2})+' '+x.currency+'</span></div>';box.hidden=false;box.classList.remove('dw-toast-hide');setTimeout(()=>{box.classList.add('dw-toast-hide');setTimeout(()=>{box.hidden=true;},450);},5200);}
- load().then(()=>setTimeout(show,4200)); setInterval(async()=>{await load();show();},11000);
-})();
-</script>
