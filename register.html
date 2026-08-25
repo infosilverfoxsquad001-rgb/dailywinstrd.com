@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+{% block title %}Create Account — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page auth-page"><div class="card form-card">
+<h1>Create Your Account</h1><p class="muted">Register and verify your email to access your dashboard.</p>
+<form method="post" action="{{ url_for('auth.register') }}">
+<div class="grid">
+<div class="field"><label>First Name</label><input type="text" name="first_name" required></div>
+<div class="field"><label>Last Name</label><input type="text" name="last_name" required></div>
+</div>
+<div class="field"><label>Email Address</label><input type="email" name="email" required autocomplete="email"></div>
+<div class="field"><label>Country</label>
+<select name="country" id="countrySelect" required>
+<option value="">Select your country</option><option value="Nigeria" data-code="+234" data-currency="NGN" data-symbol="₦">Nigeria</option>
+<option value="United States" data-code="+1" data-currency="USD" data-symbol="$">United States</option>
+<option value="United Kingdom" data-code="+44" data-currency="GBP" data-symbol="£">United Kingdom</option>
+<option value="Canada" data-code="+1" data-currency="CAD" data-symbol="C$">Canada</option>
+<option value="South Africa" data-code="+27" data-currency="ZAR" data-symbol="R">South Africa</option>
+<option value="Ghana" data-code="+233" data-currency="GHS" data-symbol="₵">Ghana</option>
+<option value="Kenya" data-code="+254" data-currency="KES" data-symbol="KSh">Kenya</option>
+<option value="Germany" data-code="+49" data-currency="EUR" data-symbol="€">Germany</option>
+<option value="France" data-code="+33" data-currency="EUR" data-symbol="€">France</option>
+<option value="Australia" data-code="+61" data-currency="AUD" data-symbol="A$">Australia</option>
+<option value="India" data-code="+91" data-currency="INR" data-symbol="₹">India</option>
+</select></div>
+<div class="field"><label>Phone Number</label><div class="phone-row"><input id="countryCode" name="country_code" readonly placeholder="+234"><input type="tel" name="phone" required></div></div>
+<input type="hidden" id="currencyInput" name="currency" value="USD"><input type="hidden" id="symbolInput" name="currency_symbol" value="$">
+<div class="field"><label>Password</label><input type="password" id="password" name="password" minlength="8" required></div>
+<div class="field"><label>Confirm Password</label><input type="password" id="confirmPassword" name="confirm_password" minlength="8" required><p id="passwordMatch" class="muted"></p></div>
+<button type="submit">Create Account & Send Code</button>
+</form>
+<p class="muted">Already have an account? <a class="link" href="{{ url_for('auth.login') }}">Sign in</a></p>
+</div></main>
+{% endblock %}
+{% block scripts %}
+<script>
+const country=document.getElementById('countrySelect'), code=document.getElementById('countryCode'), currency=document.getElementById('currencyInput'), symbol=document.getElementById('symbolInput');
+country.addEventListener('change',()=>{const o=country.options[country.selectedIndex];code.value=o.dataset.code||'';currency.value=o.dataset.currency||'USD';symbol.value=o.dataset.symbol||'$';});
+const pw=document.getElementById('password'), cpw=document.getElementById('confirmPassword'), match=document.getElementById('passwordMatch');
+function check(){match.textContent=!cpw.value?'':pw.value===cpw.value?'Passwords match.':'Passwords do not match.';}
+pw.addEventListener('input',check);cpw.addEventListener('input',check);
+</script>
+{% endblock %}

@@ -1,0 +1,14 @@
+
+{% extends "base.html" %}
+{% block title %}Dashboard — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page">
+<h1>Welcome, {{ user.first_name }}</h1>
+<div class="grid">
+<div class="card"><h3>Account Balance</h3><div class="amount">{{ user.currency_symbol }}{{ '%.2f'|format(user.balance) }}</div></div>
+<div class="card"><h3>Total Profit</h3><div class="amount">{{ user.currency_symbol }}{{ '%.2f'|format(user.profit) }}</div></div>
+<div class="card"><h3>Referral Bonus</h3><div class="amount">{{ user.currency_symbol }}{{ '%.2f'|format(user.referral_bonus) }}</div><div class="usd">Total referrals: {{ user.total_referrals }} · Active: {{ user.active_referrals }}</div></div>
+</div>
+<div class="card" style="margin-top:18px"><h3>Account status</h3><p><span class="status approved">Email verified</span></p><p class="muted">{{ user.email }}</p></div>
+</main>
+{% endblock %}
