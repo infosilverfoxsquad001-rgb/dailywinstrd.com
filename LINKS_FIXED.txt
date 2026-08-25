@@ -1,0 +1,4 @@
+Fixed static website navigation:
+Root Register/Get Started -> auth/register.html
+Root Login/Sign In -> auth/login.html
+Auth internal links -> local files in auth/
