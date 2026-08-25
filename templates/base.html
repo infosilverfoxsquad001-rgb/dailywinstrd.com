@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}DAILYWINS{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="app-nav">
+  <a href="{{ url_for('index') }}">Home</a>
+  {% if current_user_id %}
+    <a href="{{ url_for('dashboard.dashboard') }}">Dashboard</a>
+    <a href="{{ url_for('transactions.deposit') }}">Deposit</a>
+    <a href="{{ url_for('transactions.withdraw') }}">Withdraw</a>
+    <a href="{{ url_for('investments.investments') }}">Investments</a>
+    <a href="{{ url_for('transactions.transactions') }}">Transactions</a>
+    <a href="{{ url_for('dashboard.referrals') }}">Referral Bonuses</a>
+    <a href="{{ url_for('dashboard.notifications') }}">Notifications</a>
+    <a href="{{ url_for('dashboard.kyc') }}">KYC</a>
+    <a href="{{ url_for('dashboard.profile') }}">Profile</a>
+    <a href="{{ url_for('dashboard.settings') }}">Settings</a>
+    <a href="{{ url_for('dashboard.support') }}">Support</a>
+    <a href="{{ url_for('auth.logout') }}">Sign Out</a>
+  {% else %}
+    <a href="{{ url_for('auth.login') }}">Sign In</a>
+    <a href="{{ url_for('auth.register') }}">Create Account</a>
+  {% endif %}
+</nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-wrap">
+      {% for category, message in messages %}
+        <div class="flash {{ category }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

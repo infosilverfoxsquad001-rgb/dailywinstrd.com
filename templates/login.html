@@ -1,0 +1,15 @@
+
+{% extends "base.html" %}
+{% block title %}Sign In — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page auth-page"><div class="card form-card">
+<h1>Welcome Back</h1><p class="muted">Sign in to access your secure dashboard.</p>
+<form method="post" action="{{ url_for('auth.login') }}">
+<div class="field"><label>Email</label><input type="email" name="email" required autocomplete="email"></div>
+<div class="field"><label>Password</label><input type="password" name="password" required autocomplete="current-password"></div>
+<button type="submit">Sign In to Dashboard</button>
+</form>
+<p class="muted"><a href="{{ url_for('auth.forgot_password') }}">Forgot password?</a></p>
+<p>New here? <a class="link" href="{{ url_for('auth.register') }}">Create an account</a></p>
+</div></main>
+{% endblock %}

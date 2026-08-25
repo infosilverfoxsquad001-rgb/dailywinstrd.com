@@ -1,0 +1,16 @@
+
+{% extends "base.html" %}
+{% block title %}Verify Email — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page auth-page"><div class="card form-card">
+<h1>Verify Your Email</h1><p>Enter the six-digit code sent to <strong>{{ email or "your email" }}</strong>.</p>
+<form method="post" action="{{ url_for('auth.verify_email') }}">
+<input type="hidden" name="email" value="{{ email }}">
+<div class="field"><label>Verification Code</label><input name="code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" required></div>
+<button type="submit">Verify Email</button>
+</form>
+<form method="post" action="{{ url_for('auth.resend_code') }}" style="margin-top:10px">
+<input type="hidden" name="email" value="{{ email }}"><button type="submit" class="btn secondary">Resend Code</button>
+</form>
+</div></main>
+{% endblock %}

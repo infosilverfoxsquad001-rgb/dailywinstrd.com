@@ -7,7 +7,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
-.hero-bg{background-image:linear-gradient(90deg,rgba(2,6,23,.94),rgba(2,6,23,.72)),linear-gradient(180deg,rgba(2,6,23,.1),rgba(2,6,23,.88)),url("static/images/DW4.png");background-size:cover;background-position:center}
+.hero-bg{background-image:linear-gradient(90deg,rgba(2,6,23,.94),rgba(2,6,23,.72)),linear-gradient(180deg,rgba(2,6,23,.1),rgba(2,6,23,.88)),url("{{ url_for('static',filename='images/DW4.png') }}");background-size:cover;background-position:center}
 .market-marquee{overflow:hidden}.market-track{display:flex;width:max-content;animation:ticker-scroll 34s linear infinite}.market-marquee:hover .market-track{animation-play-state:paused}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .market-item{display:inline-flex;align-items:center;gap:.65rem;padding:0 .9rem;white-space:nowrap}
@@ -16,13 +16,13 @@
 <body class="bg-slate-950 text-slate-100 font-sans antialiased">
 <header class="fixed top-0 left-0 right-0 z-50 bg-slate-950/80 backdrop-blur-md border-b border-slate-900">
 <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-<a href="./index.html" class="flex items-center gap-3"><div class="bg-white rounded-2xl px-3 py-2"><img src="static/images/logo.png" class="h-9 w-auto"></div><span class="hidden sm:inline text-xl font-bold">DAILYWINS</span></a>
+<a href="{{ url_for('index') }}" class="flex items-center gap-3"><div class="bg-white rounded-2xl px-3 py-2"><img src="{{ url_for('static',filename='images/logo.png') }}" class="h-9 w-auto"></div><span class="hidden sm:inline text-xl font-bold">DAILYWINS</span></a>
 <nav class="hidden md:flex items-center space-x-8 text-sm text-slate-300">
 <a href="#hero">Home</a><a href="#markets">Markets</a><a href="#plans">Investment Plans</a><a href="#features">Why Us</a><a href="#faq">FAQ</a>
 </nav>
 <div class="flex items-center space-x-4">
-<a href="./login.html" class="text-sm text-slate-300 px-4 py-2">Sign In</a>
-<a href="./register.html" class="bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl text-sm">Get Started</a>
+<a href="{{ url_for('auth.login') }}" class="text-sm text-slate-300 px-4 py-2">Sign In</a>
+<a href="{{ url_for('auth.register') }}" class="bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl text-sm">Get Started</a>
 </div>
 </div></header>
 
@@ -32,7 +32,7 @@
 <h1 class="text-5xl md:text-7xl font-extrabold leading-tight text-white">Grow Your Wealth <span class="inline-block mt-2 bg-white text-slate-950 px-4 py-2 rounded-2xl">With Smart Investments</span></h1>
 <p class="mt-7 text-lg md:text-xl text-slate-200 max-w-2xl">Track your account securely, review investment plans and manage your profile from one dashboard.</p>
 <div class="mt-10 flex flex-col sm:flex-row gap-4">
-<a href="./register.html" class="bg-emerald-500 text-slate-950 font-bold px-8 py-4 rounded-xl text-center">Create Your Account</a>
+<a href="{{ url_for('auth.register') }}" class="bg-emerald-500 text-slate-950 font-bold px-8 py-4 rounded-xl text-center">Create Your Account</a>
 <a href="#plans" class="bg-white text-slate-950 font-bold px-8 py-4 rounded-xl text-center">View Plans</a>
 </div>
 </div></div></section>
@@ -44,20 +44,30 @@
 <section id="plans" class="py-24 max-w-7xl mx-auto px-6">
 <div class="text-center max-w-2xl mx-auto mb-16"><span class="text-emerald-400 font-semibold text-sm uppercase">Investment Plans</span><h2 class="text-3xl md:text-4xl font-bold mt-2">Choose a Plan</h2><p class="text-slate-400 mt-3">These displayed plans are informational until a compliant payment and investment workflow is connected.</p></div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8"><span class="text-xs font-bold uppercase bg-slate-800 text-slate-300 px-3 py-1 rounded-full">Starter</span><h3 class="text-4xl font-extrabold text-white mt-4">Plan</h3><p class="text-slate-400 text-sm mt-3">Investment plan details will appear here when the backend is connected.</p><a href="./register.html" class="mt-8 block bg-slate-800 text-white font-semibold py-3 rounded-xl text-center text-sm">Get Started</a></div>
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8"><span class="text-xs font-bold uppercase bg-slate-800 text-slate-300 px-3 py-1 rounded-full">Growth</span><h3 class="text-4xl font-extrabold text-white mt-4">Plan</h3><p class="text-slate-400 text-sm mt-3">Investment plan details will appear here when the backend is connected.</p><a href="./register.html" class="mt-8 block bg-slate-800 text-white font-semibold py-3 rounded-xl text-center text-sm">Get Started</a></div>
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8"><span class="text-xs font-bold uppercase bg-slate-800 text-slate-300 px-3 py-1 rounded-full">Premium</span><h3 class="text-4xl font-extrabold text-white mt-4">Plan</h3><p class="text-slate-400 text-sm mt-3">Investment plan details will appear here when the backend is connected.</p><a href="./register.html" class="mt-8 block bg-slate-800 text-white font-semibold py-3 rounded-xl text-center text-sm">Get Started</a></div>
-<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8"><span class="text-xs font-bold uppercase bg-slate-800 text-slate-300 px-3 py-1 rounded-full">Advanced</span><h3 class="text-4xl font-extrabold text-white mt-4">Plan</h3><p class="text-slate-400 text-sm mt-3">Investment plan details will appear here when the backend is connected.</p><a href="./register.html" class="mt-8 block bg-slate-800 text-white font-semibold py-3 rounded-xl text-center text-sm">Get Started</a></div>
+{% for p in plans %}
+<div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 flex flex-col justify-between">
+<div><span class="text-xs font-bold uppercase bg-slate-800 text-slate-300 px-3 py-1 rounded-full">{{ p.name }}</span>
+<h3 class="text-4xl font-extrabold text-white mt-4">{{ p.roi_percent }}% <span class="text-sm font-medium text-slate-400">ROI</span></h3>
+<p class="text-xs text-emerald-400 mt-1">Duration: {{ p.duration_days }} Days</p>
+<ul class="mt-8 space-y-3 text-sm text-slate-300">
+<li class="flex justify-between pb-2 border-b border-slate-800"><span class="text-slate-400">Minimum</span><span class="font-bold">${{ '%.2f'|format(p.minimum_amount) }}</span></li>
+<li class="flex justify-between pb-2"><span class="text-slate-400">Maximum</span><span class="font-bold">{% if p.maximum_amount %}${{ '%.2f'|format(p.maximum_amount) }}{% else %}Unlimited{% endif %}</span></li>
+</ul></div>
+<a href="{{ url_for('auth.register') }}" class="mt-8 bg-slate-800 text-white font-semibold py-3 rounded-xl text-center text-sm">Get Started</a>
+</div>
+{% endfor %}
 </div></section>
 
 <section id="features" class="py-24 border-t border-slate-900 bg-slate-950/60"><div class="max-w-7xl mx-auto px-6">
 <div class="text-center max-w-2xl mx-auto mb-16"><span class="text-emerald-400 font-semibold text-sm uppercase">Platform Features</span><h2 class="text-3xl md:text-4xl font-bold mt-2">Built Around Your Account</h2></div>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-
-<div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl"><i data-lucide="shield-check" class="w-6 h-6 text-emerald-400 mb-6"></i><h3 class="text-xl font-bold">Secure Authentication</h3><p class="text-slate-400 text-sm mt-2">The Flask backend provides password hashing, email verification and server-side sessions.</p></div>
-<div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl"><i data-lucide="layout-dashboard" class="w-6 h-6 text-emerald-400 mb-6"></i><h3 class="text-xl font-bold">Personal Dashboard</h3><p class="text-slate-400 text-sm mt-2">Your dashboard becomes available after the backend is deployed.</p></div>
-<div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl"><i data-lucide="headphones" class="w-6 h-6 text-emerald-400 mb-6"></i><h3 class="text-xl font-bold">Support & Account Tools</h3><p class="text-slate-400 text-sm mt-2">Profile, settings, KYC, notifications and support are included in the backend project.</p></div>
+{% for icon,title,text in [
+('shield-check','Secure Authentication','Password hashing, email verification and server-side sessions protect account access.'),
+('layout-dashboard','Personal Dashboard','See your account status, balances and activity in one place.'),
+('headphones','Support & Account Tools','Profile, settings, KYC, notifications and support pages are ready for backend integration.')
+] %}
+<div class="bg-slate-900 border border-slate-800 p-8 rounded-2xl"><i data-lucide="{{ icon }}" class="w-6 h-6 text-emerald-400 mb-6"></i><h3 class="text-xl font-bold">{{ title }}</h3><p class="text-slate-400 text-sm mt-2">{{ text }}</p></div>
+{% endfor %}
 </div></div></section>
 
 <section id="faq" class="py-20 max-w-4xl mx-auto px-6"><h2 class="text-3xl font-bold text-center mb-8">FAQ</h2>

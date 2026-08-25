@@ -1,0 +1,17 @@
+
+:root{--primary:#0b8f68;--dark:#0f172a;--light:#f8fafc;--muted:#64748b;--danger:#dc2626;--warning:#d97706}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:#1e293b}
+a{text-decoration:none;color:inherit}.app-nav{display:flex;flex-wrap:wrap;gap:12px;padding:14px 20px;background:var(--dark);color:#fff}
+.app-nav a{padding:9px 11px;border-radius:8px}.app-nav a:hover{background:#1e293b}
+.page{max-width:1180px;margin:28px auto;padding:0 18px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;box-shadow:0 8px 25px rgba(15,23,42,.05)}
+.card h3{margin-top:0}.amount{font-size:24px;font-weight:700}.usd{color:var(--muted);margin-top:6px}
+.status{display:inline-block;padding:6px 10px;border-radius:999px;font-size:12px;font-weight:700}.pending{background:#fef3c7;color:#92400e}.approved{background:#dcfce7;color:#166534}.declined{background:#fee2e2;color:#991b1b}
+.form-card{max-width:700px;margin:auto}.field{margin:14px 0}.field label{display:block;font-weight:700;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #cbd5e1;border-radius:9px}
+button,.btn{background:var(--primary);color:#fff;border:0;border-radius:9px;padding:12px 16px;font-weight:700;cursor:pointer}.btn.secondary{background:#475569}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:12px;border-bottom:1px solid #e2e8f0;text-align:left}
+@media(max-width:650px){.page{margin:18px auto}.app-nav{gap:6px;padding:10px}.app-nav a{padding:7px;font-size:13px}}
+
+.flash-wrap{max-width:1180px;margin:18px auto;padding:0 18px}.flash{padding:12px 14px;border-radius:10px;margin:8px 0;font-size:14px}.flash.success{background:#dcfce7;color:#166534}.flash.error{background:#fee2e2;color:#991b1b}.flash.info{background:#dbeafe;color:#1e40af}
+.auth-page{min-height:calc(100vh - 80px);display:flex;align-items:center}.muted{color:#64748b}.link{color:#0b8f68;font-weight:700}.phone-row{display:grid;grid-template-columns:110px 1fr;gap:8px}.admin-nav{display:flex;flex-wrap:wrap;gap:8px;padding:10px 20px;background:#334155;color:#fff}.admin-nav a{padding:8px 10px;border-radius:7px}.admin-nav a:hover{background:#475569}
+input:focus,select:focus,textarea:focus{outline:2px solid rgba(11,143,104,.25);border-color:var(--primary)}

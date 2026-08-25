@@ -1,0 +1,13 @@
+
+{% extends "base.html" %}
+{% block content %}
+<nav class="admin-nav">
+<a href="{{ url_for('admin.dashboard') }}">Dashboard</a><a href="{{ url_for('admin.users') }}">Users</a>
+<a href="{{ url_for('admin.deposits') }}">Deposits</a><a href="{{ url_for('admin.withdrawals') }}">Withdrawals</a>
+<a href="{{ url_for('admin.investments') }}">Investments</a><a href="{{ url_for('admin.transactions') }}">Transactions</a>
+<a href="{{ url_for('admin.plans') }}">Plans</a><a href="{{ url_for('admin.kyc') }}">KYC</a><a href="{{ url_for('admin.settings') }}">Settings</a>
+<a href="{{ url_for('admin.logout') }}">Admin Sign Out</a>
+</nav>
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}{% endwith %}
+{% block admin_content %}{% endblock %}
+{% endblock %}

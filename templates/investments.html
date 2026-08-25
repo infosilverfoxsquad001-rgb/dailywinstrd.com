@@ -1,0 +1,9 @@
+
+{% extends "base.html" %}
+{% block title %}Investments — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page"><h1>Investment Plans</h1><div class="grid">
+{% for p in plans %}<div class="card"><h2>{{ p.name }}</h2><p class="amount">{{ p.roi_percent }}% ROI</p><p>{{ p.duration_days }} days</p><p>Minimum: {{ user.currency_symbol }}{{ '%.2f'|format(p.minimum_amount) }}</p><p>Maximum: {% if p.maximum_amount %}{{ user.currency_symbol }}{{ '%.2f'|format(p.maximum_amount) }}{% else %}Unlimited{% endif %}</p>
+<form method="post" action="{{ url_for('investments.request_investment') }}"><input type="hidden" name="plan_id" value="{{ p.id }}"><button>Request Review</button></form></div>{% endfor %}
+</div></main>
+{% endblock %}

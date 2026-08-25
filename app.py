@@ -41,9 +41,9 @@ def create_app():
         }
 
     @app.get("/")
-    def home():
+    def index():
         plans = InvestmentPlan.query.filter_by(active=True).order_by(InvestmentPlan.minimum_amount).all()
-        return render_template("home.html", plans=plans)
+        return render_template("index.html", plans=plans)
 
     @app.get("/health")
     def health():

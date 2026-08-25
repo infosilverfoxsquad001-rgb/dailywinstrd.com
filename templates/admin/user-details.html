@@ -1,0 +1,6 @@
+
+{% extends "admin/base_admin.html" %}
+{% block title %}User Details — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>{{ user.full_name }}</h1><div class="card">
+<p><strong>Email:</strong> {{ user.email }}</p><p><strong>Verified:</strong> {{ user.verified }}</p><p><strong>Country:</strong> {{ user.country }}</p><p><strong>Phone:</strong> {{ user.country_code }} {{ user.phone }}</p><p><strong>Balance:</strong> {{ user.currency_symbol }}{{ '%.2f'|format(user.balance) }}</p>
+</div></main>{% endblock %}

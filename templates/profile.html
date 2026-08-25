@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block title %}Profile — DAILYWINS{% endblock %}
+{% block content %}<main class="page"><h1>Profile</h1><div class="card"><p>Manage your personal information.</p><p><strong>Name:</strong> {{ user.full_name }}</p><p><strong>Email:</strong> {{ user.email }}</p><p><strong>Country:</strong> {{ user.country }}</p><p><strong>Phone:</strong> {{ user.country_code }} {{ user.phone }}</p></div></main>{% endblock %}

@@ -1,0 +1,6 @@
+
+{% extends "admin/base_admin.html" %}
+{% block title %}Investments — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>Investments</h1><div class="card"><table><thead><tr><th>User</th><th>Plan</th><th>Amount</th><th>Status</th></tr></thead><tbody>
+{% for i in investments %}<tr><td>{{ i.user.email }}</td><td>{{ i.plan.name }}</td><td>{{ '%.2f'|format(i.amount) }}</td><td>{{ i.status }}</td></tr>{% endfor %}
+</tbody></table></div></main>{% endblock %}

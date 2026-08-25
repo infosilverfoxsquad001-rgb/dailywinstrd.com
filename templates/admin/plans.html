@@ -1,0 +1,6 @@
+
+{% extends "admin/base_admin.html" %}
+{% block title %}Plans — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>Investment Plans</h1><div class="grid">
+{% for p in plans %}<div class="card"><h3>{{ p.name }}</h3><div class="amount">{{ p.roi_percent }}%</div><p>{{ p.duration_days }} days</p><p>Min: {{ p.minimum_amount }}</p><p>Max: {{ p.maximum_amount or "Unlimited" }}</p></div>{% endfor %}
+</div></main>{% endblock %}

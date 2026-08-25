@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% block title %}Referrals — DAILYWINS{% endblock %}
+{% block content %}
+<main class="page"><h1>Referral Bonuses</h1>
+<div class="grid"><div class="card"><h3>Total Referral Bonus</h3><div class="amount">{{ user.currency_symbol }}{{ '%.2f'|format(user.referral_bonus) }}</div></div>
+<div class="card"><h3>Referrals</h3><p>Total: {{ user.total_referrals }}</p><p>Active: {{ user.active_referrals }}</p></div></div>
+<div class="card" style="margin-top:18px"><h3>Your Referral Link</h3><input id="referralLink" value="{{ referral_url }}" readonly><button type="button" id="copyReferral" style="margin-top:10px">Copy Link</button></div>
+</main>
+{% endblock %}
+{% block scripts %}<script>document.getElementById('copyReferral')?.addEventListener('click',async()=>{await navigator.clipboard.writeText(document.getElementById('referralLink').value);document.getElementById('copyReferral').textContent='Copied';});</script>{% endblock %}

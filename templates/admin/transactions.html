@@ -1,0 +1,3 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Transactions — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>Transactions</h1><div class="card"><table><thead><tr><th>Reference</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th></tr></thead><tbody>{% for t in transactions %}<tr><td>{{ t.reference }}</td><td>{{ t.user.email }}</td><td>{{ t.transaction_type }}</td><td>{{ '%.2f'|format(t.amount) }}</td><td>{{ t.status }}</td></tr>{% endfor %}</tbody></table></div></main>{% endblock %}

@@ -1,0 +1,9 @@
+
+{% extends "admin/base_admin.html" %}
+{% block title %}Admin Dashboard — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>Admin Dashboard</h1><div class="grid">
+<div class="card"><h3>Total Users</h3><div class="amount">{{ user_count }}</div></div>
+<div class="card"><h3>Pending Deposits</h3><div class="amount">{{ pending_deposits }}</div></div>
+<div class="card"><h3>Pending Withdrawals</h3><div class="amount">{{ pending_withdrawals }}</div></div>
+<div class="card"><h3>Pending Investments</h3><div class="amount">{{ pending_investments }}</div></div>
+</div></main>{% endblock %}

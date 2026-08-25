@@ -1,0 +1,6 @@
+
+{% extends "admin/base_admin.html" %}
+{% block title %}Users — DAILYWINS{% endblock %}
+{% block admin_content %}<main class="page"><h1>Users</h1><div class="card"><table><thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Verified</th><th>Created</th><th></th></tr></thead><tbody>
+{% for u in users %}<tr><td>{{ u.id }}</td><td>{{ u.full_name }}</td><td>{{ u.email }}</td><td>{{ "Yes" if u.verified else "No" }}</td><td>{{ u.created_at.strftime('%Y-%m-%d') }}</td><td><a class="link" href="{{ url_for('admin.user_details', user_id=u.id) }}">View</a></td></tr>{% endfor %}
+</tbody></table></div></main>{% endblock %}
